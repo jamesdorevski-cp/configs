@@ -1,5 +1,11 @@
 local dap = require("dap")
 
+-- Mason DAP setup (auto-install debuggers)
+require("mason-nvim-dap").setup({
+    ensure_installed = { "netcoredbg" },
+    automatic_installation = true,
+})
+
 -- Keymaps
 vim.keymap.set('n', '<F5>', function() dap.continue() end)
 vim.keymap.set('n', '<F10>', function() dap.step_over() end)
@@ -30,6 +36,12 @@ dap.adapters.gdb = {
   type = "executable",
   command = "gdb",
   args = { "--interpreter=dap", "--eval-command", "set print pretty on" }
+}
+
+dap.adapters.coreclr = {
+    type = 'executable',
+    command = vim.fn.stdpath('data') .. '/mason/bin/netcoredbg',
+    args = {'--interpreter=vscode'}
 }
 
 -- Configurations
@@ -66,5 +78,24 @@ dap.configurations.c = {
             return vim.fn.input('Path to executable: ', vim.fn.getcwd() .. '/', 'file')
         end,
         cwd = '${workspaceFolder}'
+    },
+}
+
+dap.configurations.cs = {
+    {
+        name = "Launch .NET Core",
+        type = "coreclr",
+        request = "launch",
+        program = function()
+            local cwd = vim.fn.getcwd()
+            return vim.fn.input('Path to DLL: ', cwd .. '/bin/Debug/', 'file')
+        end,
+        cwd = "${workspaceFolder}",
+    },
+    {
+        name = "Attach to process",
+        type = "coreclr",
+        request = "attach",
+        processId = require('dap.utils').pick_process,
     },
 }

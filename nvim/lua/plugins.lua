@@ -1,14 +1,14 @@
 return {
     {
-        'ribru17/bamboo.nvim',
-        lazy = false,
-        priority = 1000,
-        config = function()
-            require('bamboo').setup {
-                -- optional configuration here
-            }
-            require('bamboo').load()
-        end,
+      'ribru17/bamboo.nvim',
+      lazy = false,
+      priority = 1000,
+      config = function()
+        require('bamboo').setup {
+          -- optional configuration here
+        }
+        require('bamboo').load()
+      end,
     },
     {
         "seblyng/roslyn.nvim",
@@ -27,7 +27,7 @@ return {
     {"nvim-treesitter/nvim-treesitter", build = ":TSUpdate"},
     {"tpope/vim-fugitive"},
     {"mfussenegger/nvim-dap"},
-    {'hiphish/rainbow-delimiters.nvim'},
+    {"jay-babu/mason-nvim-dap.nvim"},
     {
         "nvim-neo-tree/neo-tree.nvim",
         branch = "v3.x",
