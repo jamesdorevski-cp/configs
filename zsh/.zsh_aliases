@@ -1,7 +1,20 @@
+# Navigation
+alias j='cd'
+alias l='eza -al --git --group-directories-first --sort=name --total-size --time-style long-iso -t modified'
+
+# git
+alias g='git'
+alias g='git add'
+alias gaa='git add .'
+alias gp='git push'
+alias gg ='git pull'
 alias gs='git status'
-alias vi='nvim'
-alias dn='dotnet'
-alias ls='eza'
-alias l='eza'
-alias ll='eza -la'
 alias glr='git log $(git rev-list --tags --max-count=1 --skip=2 --no-walk)..HEAD --format="%Cred%h%Creset - %s %Cgreen(%as) %C(bold blue)<%an>%Creset"'
+
+# dotnet
+alias d='dotnet'
+alias db='dotnet build'
+alias dn='dotnet new'
+alias dr='dotnet run'
+
+alias vi='nvim'
